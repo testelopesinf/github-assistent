@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { AsyncStorage, Text, View } from 'react-native';
+import Routes from './src/Routes';
+import { AsyncStorage } from 'react-native';
 import ThemeContext from './src/utils/ThemeContext';
-import ThemeSwitch from './src/components/ThemeSwitch';
-import backgrounds from './src/styles/backgrounds';
 
 const App: React.FC = () => {
 
@@ -12,7 +11,7 @@ const App: React.FC = () => {
     async function setInicialTheme() {
       const savedTheme = await AsyncStorage.getItem('@github-assistent/theme');
 
-      if (savedTheme) setTheme(savedTheme);
+      if(savedTheme) setTheme(savedTheme);
 
     };
 
@@ -27,10 +26,8 @@ const App: React.FC = () => {
 
   return (
     <ThemeContext.Provider value={defaultContext}>
-      <View style={[{ flex: 1 }, backgrounds[theme].main]}>
-        <ThemeSwitch />
-      </View>
-    </ThemeContext.Provider >
+      <Routes />
+    </ThemeContext.Provider>
   );
 }
 
